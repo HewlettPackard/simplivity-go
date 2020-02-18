@@ -1,0 +1,8 @@
+# use the latest ubuntu environment (18.04) available on travis
+dist: bionic
+
+language: go
+
+go:
+  - 1.13.x
+  - master

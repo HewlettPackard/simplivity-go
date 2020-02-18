@@ -295,6 +295,7 @@ func (v *VirtualMachine) Move(vm_name string, datastore *Datastore) (*VirtualMac
 	return clonedVM, nil
 }
 
+// CreateBackup request body
 type CreateBackupRequest struct {
 	// The name of the new backup created from this action
 	Name string `json:"backup_name,omitempty"`
@@ -373,6 +374,7 @@ func (v *VirtualMachine) GetBackups() (*BackupList, error) {
 	return &backupList, nil
 }
 
+// SetBackupParameters request body
 type SetBackupParametersRequest struct {
 	// The user name of the virtual machine
 	Username string `json:"guest_username,omitempty"`

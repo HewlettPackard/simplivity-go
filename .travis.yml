@@ -2,6 +2,6 @@ language: go
 
 go:
   - 1.13.x
-  - master
   
-script: go get github.com/HewlettPackard/simplivity-go/ovc && go test -v
+script:
+  - go test -v ./ovc/...

@@ -4,4 +4,4 @@ go:
   - 1.13.x
   
 script:
-  - go test -v ./ovc/...
+  - make test

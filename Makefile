@@ -1,2 +1,5 @@
 test:
-	cd ./ovc && goveralls  -service=travis-ci
+	cd ./ovc
+	go test -v
+	goveralls  -service=travis-ci
+	

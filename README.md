@@ -1,4 +1,4 @@
-[![Documentation](https://godoc.org/github.com/HewlettPackard/simplivity-go?status.svg)](http://godoc.org/github.com/HewlettPackard/simplivity-go)
+[![Documentation](https://godoc.org/github.com/HewlettPackard/simplivity-go/ovc)](https://godoc.org/github.com/HewlettPackard/simplivity-go/ovc)
 [![Build Status](https://travis-ci.com/HewlettPackard/simplivity-go.svg?branch=master)](https://travis-ci.com/HewlettPackard/simplivity-go)
 [![Coverage Status](https://coveralls.io/repos/github/HewlettPackard/simplivity-go/badge.svg?branch=master)](https://coveralls.io/github/HewlettPackard/simplivity-go?branch=master)
 

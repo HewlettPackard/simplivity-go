@@ -3,6 +3,7 @@ package ovc
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"log"
 	"time"
 )
@@ -179,4 +180,25 @@ func (b *BackupResource) GetById(id string) (*Backup, error) {
 	}
 
 	return nil, errors.New("Resource doesn't exist")
+}
+
+// Delete deletes a backup.
+func (b *Backup) Delete() error {
+	var (
+		path = fmt.Sprintf("/backups/%s", b.Id)
+	)
+
+	resp, err := commonClient.DoRequest("DELETE", path, "", nil, nil)
+	if err != nil {
+		log.Println(err)
+		return err
+	}
+
+	_, err = commonClient.Tasks.WaitForTask(resp)
+	if err != nil {
+		log.Println(err)
+		return err
+	}
+
+	return nil
 }

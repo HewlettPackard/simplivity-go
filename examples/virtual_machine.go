@@ -51,91 +51,94 @@ func main() {
 	}
 	fmt.Println(vmByName)
 
-	//Get a VM resource by its id
-	fmt.Println("\nGet a VM resource by it's id.")
-	vmById, err := client.VirtualMachines.GetById(vmByName.Id)
-	if err != nil {
-		fmt.Println(err)
-	}
-	fmt.Println(vmById)
+	err = vmByName.UpdatePowerState("on")
+	fmt.Println(err)
 
-	//Set policy for a single and multiple VMs
-	policyList, err := client.Policies.GetAll(ovc.GetAllParams{Limit: 1})
-	if err != nil {
-		fmt.Println(err)
-	}
-	if policyList != nil {
-		//Get one of the backup policies
-		policy := policyList.Members[0]
-
-		//Set policy for multiple VMs
-		fmt.Println("\nSet policy for multiple VMs")
-		vms := []*ovc.VirtualMachine{vmByName}
-		err := client.VirtualMachines.SetPolicyForMultipleVMs(policy, vms)
-		if err != nil {
-			fmt.Println(err)
-		}
-
-		//Set policy for a single VM
-		fmt.Println("\nSet policy for a single VM")
-		err = vmByName.SetPolicy(policy)
-		if err != nil {
-			fmt.Println(err)
-		}
-	}
-
-	//Clone a VM resource
-	fmt.Println("\nClone a VM resource")
-	clonedVM, err := vmByName.Clone("clone_from_go", false)
-	if err != nil {
-		fmt.Println(err)
-	} else {
-		fmt.Println("Clone operation was Successful")
-	}
-
-	//Move a VM to another datastore
-	fmt.Println("\nMove a VM to another datastore", clonedVM.Name)
-	datastore, err := client.Datastores.GetByName(datastoreName)
-	if err != nil {
-		fmt.Println(err)
-	} else {
-		vm, err := clonedVM.Move("move_from_go", datastore)
-		if err != nil {
-			fmt.Println(err)
-		} else {
-			fmt.Println("Move operation was Successful", vm.Name)
-		}
-	}
-
-	//Take a backup of a Virtual Machine
-	fmt.Println("Take backup of a Virtual Machine")
-	backupName := "backup_" + currentTime
-	backReq := &ovc.CreateBackupRequest{Name: backupName}
-	_, err = vmByName.CreateBackup(backReq, nil)
-	if err != nil {
-		fmt.Println(err)
-	} else {
-		fmt.Println("Backup operation was Successful")
-	}
-
-	// Get backups of a VM
-	fmt.Println("\nGet all backups of a VM")
-	backupList, err := vmByName.GetBackups()
-	if err != nil {
-		fmt.Println(err)
-	}
-	for _, backup := range backupList.Members {
-		fmt.Println(backup.Name)
-	}
-
-	//Set backup parameters of a Virtual Machine
-	fmt.Println("Set backup parameters of a Virtual Machine")
-	req := &ovc.SetBackupParametersRequest{Username: "username", Password: "password", OverrideValidation: false}
-	err = vmByName.SetBackupParameters(req)
-	if err != nil {
-		fmt.Println(err)
-	} else {
-		fmt.Println("Set backup parameters operation was successful")
-	}
-
+	//	//Get a VM resource by its id
+	//	fmt.Println("\nGet a VM resource by it's id.")
+	//	vmById, err := client.VirtualMachines.GetById(vmByName.Id)
+	//	if err != nil {
+	//		fmt.Println(err)
+	//	}
+	//	fmt.Println(vmById)
+	//
+	//	//Set policy for a single and multiple VMs
+	//	policyList, err := client.Policies.GetAll(ovc.GetAllParams{Limit: 1})
+	//	if err != nil {
+	//		fmt.Println(err)
+	//	}
+	//	if policyList != nil {
+	//		//Get one of the backup policies
+	//		policy := policyList.Members[0]
+	//
+	//		//Set policy for multiple VMs
+	//		fmt.Println("\nSet policy for multiple VMs")
+	//		vms := []*ovc.VirtualMachine{vmByName}
+	//		err := client.VirtualMachines.SetPolicyForMultipleVMs(policy, vms)
+	//		if err != nil {
+	//			fmt.Println(err)
+	//		}
+	//
+	//		//Set policy for a single VM
+	//		fmt.Println("\nSet policy for a single VM")
+	//		err = vmByName.SetPolicy(policy)
+	//		if err != nil {
+	//			fmt.Println(err)
+	//		}
+	//	}
+	//
+	//	//Clone a VM resource
+	//	fmt.Println("\nClone a VM resource")
+	//	clonedVM, err := vmByName.Clone("clone_from_go", false)
+	//	if err != nil {
+	//		fmt.Println(err)
+	//	} else {
+	//		fmt.Println("Clone operation was Successful")
+	//	}
+	//
+	//	//Move a VM to another datastore
+	//	fmt.Println("\nMove a VM to another datastore", clonedVM.Name)
+	//	datastore, err := client.Datastores.GetByName(datastoreName)
+	//	if err != nil {
+	//		fmt.Println(err)
+	//	} else {
+	//		vm, err := clonedVM.Move("move_from_go", datastore)
+	//		if err != nil {
+	//			fmt.Println(err)
+	//		} else {
+	//			fmt.Println("Move operation was Successful", vm.Name)
+	//		}
+	//	}
+	//
+	//	//Take a backup of a Virtual Machine
+	//	fmt.Println("Take backup of a Virtual Machine")
+	//	backupName := "backup_" + currentTime
+	//	backReq := &ovc.CreateBackupRequest{Name: backupName}
+	//	_, err = vmByName.CreateBackup(backReq, nil)
+	//	if err != nil {
+	//		fmt.Println(err)
+	//	} else {
+	//		fmt.Println("Backup operation was Successful")
+	//	}
+	//
+	//	// Get backups of a VM
+	//	fmt.Println("\nGet all backups of a VM")
+	//	backupList, err := vmByName.GetBackups()
+	//	if err != nil {
+	//		fmt.Println(err)
+	//	}
+	//	for _, backup := range backupList.Members {
+	//		fmt.Println(backup.Name)
+	//	}
+	//
+	//	//Set backup parameters of a Virtual Machine
+	//	fmt.Println("Set backup parameters of a Virtual Machine")
+	//	req := &ovc.SetBackupParametersRequest{Username: "username", Password: "password", OverrideValidation: false}
+	//	err = vmByName.SetBackupParameters(req)
+	//	if err != nil {
+	//		fmt.Println(err)
+	//	} else {
+	//		fmt.Println("Set backup parameters operation was successful")
+	//	}
+	//
 }

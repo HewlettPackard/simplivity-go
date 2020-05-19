@@ -421,6 +421,7 @@ func (v *VirtualMachine) SetBackupParameters(req *SetBackupParametersRequest) er
 }
 
 // UpdatePowerState sets power state of the VM.
+// Valid states: on/off
 func (v *VirtualMachine) UpdatePowerState(state string) error {
 
 	var path string

@@ -54,4 +54,10 @@ func main() {
 		fmt.Println(err)
 	}
 	fmt.Println(backupById)
+
+	err = backupById.Delete()
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println("Deleted")
 }

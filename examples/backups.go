@@ -8,13 +8,12 @@ import (
 
 func main() {
 	var (
-		backupName   = "vm_new_back"
+		backupName   = "2020-01-27T00:00:00-05:00"
 		backupByName *ovc.Backup
 	)
 
 	//Create an ovc client
-	client, err := ovc.NewClient("sijeesh.kattumunda@demo.local", "Sijenov@2019", "10.30.8.245", "")
-	//client, err := ovc.NewClient("username", "password", "ovc_ip", "certificate_path_if_needed")
+	client, err := ovc.NewClient("username", "password", "ovc_ip", "certificate_path_if_needed")
 	if err != nil {
 		fmt.Println(err)
 	}

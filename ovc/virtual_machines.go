@@ -419,3 +419,39 @@ func (v *VirtualMachine) SetBackupParameters(req *SetBackupParametersRequest) er
 
 	return nil
 }
+
+// UpdatePowerState sets power state of the VM.
+// Valid states: on/off
+func (v *VirtualMachine) UpdatePowerState(state string) error {
+
+	var path string
+
+	if state == "off" {
+		path = fmt.Sprintf("/virtual_machines/%s/power_off", v.Id)
+	} else if state == "on" {
+		path = fmt.Sprintf("/virtual_machines/%s/power_on", v.Id)
+	} else {
+		error_message := "Pass a valid power state"
+		return errors.New(error_message)
+	}
+
+	req_header := map[string]string{"Content-Type": "application/vnd.simplivity.v1.11+json"}
+	resp, err := commonClient.DoRequest("POST", path, "", "", req_header)
+	if err != nil {
+		log.Println(err)
+		return err
+	}
+
+	task, err := commonClient.Tasks.WaitForTask(resp)
+	if err != nil {
+		log.Println(err)
+		return err
+	}
+
+	if len(task.AffectedResources) < 1 {
+		err_message := "Setting power state operation was not successful. Error code:" + string(task.ErrorCode)
+		return errors.New(err_message)
+	}
+
+	return nil
+}

@@ -51,6 +51,9 @@ func main() {
 	}
 	fmt.Println(vmByName)
 
+	err = vmByName.UpdatePowerState("on")
+	fmt.Println(err)
+
 	//Get a VM resource by its id
 	fmt.Println("\nGet a VM resource by it's id.")
 	vmById, err := client.VirtualMachines.GetById(vmByName.Id)

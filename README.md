@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.com/HewlettPackard/simplivity-go.svg?branch=master)](https://travis-ci.com/HewlettPackard/simplivity-go)
 [![Coverage Status](https://coveralls.io/repos/github/HewlettPackard/simplivity-go/badge.svg?branch=master)](https://coveralls.io/github/HewlettPackard/simplivity-go?branch=master)
 
-# HPE SimpliVity SDK for Go
+# HPE SimpliVity Go SDK
 
 This library provides a Go interface to the HPE SimpliVity REST APIs.
 

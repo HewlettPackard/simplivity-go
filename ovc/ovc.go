@@ -105,6 +105,7 @@ type Client struct {
 	Datastores        *DatastoreResource
 	Hosts             *HostResource
 	OmniStackClusters *OmniStackClusterResource
+	PersistentVolumes *PersistentVolumeResource
 	Policies          *PolicyResource
 	VirtualMachines   *VirtualMachineResource
 	Tasks             *TaskResource
@@ -149,6 +150,7 @@ func NewClient(username string, password string, ovc_ip string, ssl_certificate 
 	c.Hosts = (*HostResource)(&c.common)
 	c.OmniStackClusters = (*OmniStackClusterResource)(&c.common)
 	c.VirtualMachines = (*VirtualMachineResource)(&c.common)
+	c.PersistentVolumes = (*PersistentVolumeResource)(&c.common)
 	c.Policies = (*PolicyResource)(&c.common)
 	c.Tasks = (*TaskResource)(&c.common)
 

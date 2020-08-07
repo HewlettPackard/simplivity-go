@@ -9,3 +9,10 @@ This is the first release of the SimpliVity Go SDK and it adds support for the b
  - OmniStack cluster
  - Policy
  - Virtual machine
+
+# unreleased
+#### Notes
+This version adds support of persistent volumes to the SimpliVity Go SDK
+
+#### Features supported
+ - Persistent volumes
